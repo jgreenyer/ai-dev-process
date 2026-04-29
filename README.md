@@ -6,11 +6,11 @@ A reusable skill for orchestrating an AI-assisted development workflow.
 
 The `ai-dev-process` skill tracks progress in a persistent `devprocess.md`, reconciles that tracker with repo reality, and proposes the next collaborative step for the agent and developer.
 
-It is designed to work with companion skills from:
+It is designed to work with companion skills from Matt Pocock's `skills` repository:
 
 - https://github.com/mattpocock/skills/tree/main/skills
 
-This skill repo is built in appreciation of Matt Pocock's `skills` repository, whose structure and companion workflows inspired this meta-skill. If you use `ai-dev-process`, you should also look at Matt Pocock's skills and credit that work where appropriate.
+`ai-dev-process` is explicitly inspired by Matt Pocock's skill system and is intended to orchestrate and use skills from that repository. In particular, this skill builds on the workflow style and companion skills authored by Matt Pocock.
 
 Especially:
 
@@ -59,9 +59,9 @@ joel.greenyer@uni-kassel.de
 
 ## Acknowledgements
 
-Honoring inspiration and companion workflow design from Matt Pocock's skills repository:
+This project honors Matt Pocock, author of the `skills` repository, whose work inspired this skill and whose companion skills are intended to be used with it:
 
-- https://github.com/mattpocock/skills/tree/main/skills
+- Matt Pocock's `skills` repository: https://github.com/mattpocock/skills/tree/main/skills
 
 ## License
 
