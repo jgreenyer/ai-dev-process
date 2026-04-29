@@ -26,6 +26,10 @@ This skill is inspired by Matt Pocock's skill system and is intended to orchestr
 
 - `https://github.com/mattpocock/skills/tree/main/skills`
 
+It also uses the Mermaid skill by WH-2099 when diagramming is appropriate:
+
+- `https://github.com/WH-2099/mermaid-skill/blob/main/.claude/skills/mermaid/SKILL.md`
+
 When the required companion skill is available locally, explicitly switch into that workflow. Do not merely mention it.
 
 Required phase behavior:
@@ -33,14 +37,52 @@ Required phase behavior:
 - `prompt-spec` -> create `spec/spec.md` and any needed files under `spec/`
 - `requirements-specification` -> apply `grill-me`, then apply `to-prd`
 - `derive-issues-stories` -> apply `to-issues`
-- `architecture-definition` -> apply `grill-me`, then update `design.md`
-- `incremental-implementation-workflow-management` -> apply `triage` for issue flow and `tdd` for implementation work
+- `architecture-definition` -> apply `grill-me`; when diagrams would materially help, recommend named diagram types with reasons, and if the user agrees, apply the Mermaid skill and update `design.md`
+- `incremental-implementation-workflow-management` -> apply `triage` for issue flow and `tdd` for implementation work; before TDD, decide whether issue-level SDD with Mermaid diagrams would help
 
 If a required companion skill is unavailable locally, say so explicitly, point the user to the expected source repository, and advise them to clone it:
 
 - `https://github.com/mattpocock/skills/tree/main/skills`
 
 Offer to help the user clone or install that repository locally. Explicitly state that the workflow cannot proceed as intended without those companion skills being available locally. Once the companion skills are available locally, load and apply the required skills. If the user does not want to do that, continue manually using the same workflow shape, while making clear that this is a fallback rather than the intended workflow.
+
+For Mermaid specifically, strongly advise the user to clone the Mermaid skill repository so diagrams can be created with the intended workflow:
+
+- `https://github.com/WH-2099/mermaid-skill/blob/main/.claude/skills/mermaid/SKILL.md`
+
+## SDD and Mermaid guidance
+
+Before TDD on a `ready-for-agent` issue, explicitly inspect `design.md`, cross-check the planned issue-level design against it, and decide whether issue-level SDD would add value. Do not create issue-level SDD notes or Mermaid diagrams without performing this consistency check first. Consider diagrams/specification especially when the issue:
+
+- touches multiple components or modules
+- introduces a new abstraction, protocol, or workflow
+- changes architecture or integration boundaries
+- has important runtime interaction worth a sequence diagram
+- has domain structure worth a class, component, or state model
+- is ambiguous enough that diagramming would reduce risk
+
+If diagrams make sense:
+
+1. Explicitly cross-check the planned issue-level design against `design.md` first and keep issue-level SDD and diagrams consistent with it.
+2. Recommend them before TDD as a strong checkpoint.
+3. Name the diagram type or types and explain why, e.g. sequence, class, component, or state.
+4. Ask the user whether to proceed.
+5. If the user agrees, use the Mermaid skill.
+6. Put the SDD notes and Mermaid diagrams inline in the issue markdown file by default.
+7. If the issue file becomes unwieldy, split to a sibling spec file.
+
+If this explicit cross-check finds any inconsistency, omission, or likely architectural drift relative to `design.md`:
+
+1. Raise the inconsistency explicitly before proceeding.
+2. Explain how the planned issue-level design differs from `design.md`.
+3. Ask whether to resolve it now or defer it.
+4. If resolved now, update or refactor `design.md` accordingly.
+5. If deferred, still create the issue-level diagrams, but mark them as provisional and diverging from the current `design.md`.
+6. Note the divergence in the current issue.
+7. Automatically create a follow-up architecture/design issue or story describing whether the expected resolution is to update `design.md` or to refactor the implementation/spec back toward the current design.
+8. Record the process impact in `devprocess.md` if relevant.
+
+If the user declines diagrams, proceed with TDD but record that diagrams were recommended and declined.
 
 ## Completion criteria
 

@@ -1,6 +1,6 @@
 ---
 name: ai-dev-process
-description: Orchestrate an AI-assisted development workflow by tracking the current phase, reconciling artifacts, and proposing the next collaborative step. Use when the user wants to bootstrap or resume a structured dev workflow, track progress in devprocess.md, or coordinate grill-me, to-prd, to-issues, triage, and tdd.
+description: Track and orchestrate an AI-assisted development workflow through a persistent devprocess.md tracker. Use when the user wants to bootstrap or resume a structured dev workflow, track progress in devprocess.md, or coordinate grill-me, to-prd, to-issues, triage, tdd, and Mermaid-based SDD.
 ---
 
 # AI Dev Process
@@ -9,41 +9,47 @@ Track and steer a project's AI-assisted development process through a persistent
 
 ## Quick start
 
-When invoked:
+Minimal flow:
 
 1. Check for `devprocess.md`.
 2. If missing, create it from [DEVPROCESS-TEMPLATE.md](DEVPROCESS-TEMPLATE.md).
-3. Propose the default layout from [REFERENCE.md](REFERENCE.md) and ask the user to confirm or override it.
-4. Reconcile `devprocess.md` with the filesystem and issue tracker state if available.
-5. Tell the user:
+3. Propose the default layout from [REFERENCE.md](REFERENCE.md).
+4. Reconcile `devprocess.md` with repo reality.
+5. Report:
    - what is complete
-   - the current `NEXT_PHASE`
-   - the current `NEXT_ACTION`
-   - what you propose to do now
+   - `NEXT_PHASE`
+   - `NEXT_ACTION`
+   - the proposed next collaborative step
 6. Ask: **“Shall we proceed?”**
+
+See [EXAMPLES.md](EXAMPLES.md) for concrete invocations.
 
 ## Workflows
 
 ### Resume or steer the process
 
-- Treat `devprocess.md` as the canonical tracker.
+- Treat `devprocess.md` as canonical.
 - Keep exactly one `NEXT_PHASE` and one `NEXT_ACTION`.
-- Use the workflow log to record transitions, blockers, corrections, and key decisions.
-- If tracker and reality disagree, raise the inconsistency and resolve it with the user before changing direction.
-- After a phase completes, update `devprocess.md`, summarize what finished, announce what is next, and ask for confirmation.
+- Record transitions, blockers, corrections, and key decisions in the workflow log.
+- If tracker and reality disagree, raise the inconsistency before changing direction.
+- After each completed phase, update `devprocess.md`, summarize what finished, state what is next, and ask for confirmation.
 
-### Apply the right companion skill
+### Apply required companion skills
 
 Follow the phase mapping in [REFERENCE.md](REFERENCE.md).
 
-When a phase requires a companion skill, explicitly switch into that skill's workflow if available locally. Do not merely mention the skill by name. If it is not available locally, advise the user to clone the companion skills repository, explicitly say that this workflow cannot proceed as intended without those companion skills, offer to help them do that, and then load the required skills once available.
+- When a phase requires a companion skill, explicitly switch into that workflow.
+- Do not merely mention `grill-me`, `to-prd`, `to-issues`, `triage`, `tdd`, or the Mermaid skill.
+- If required skills are missing locally, tell the user the workflow cannot proceed as intended, advise cloning the companion repositories, and offer to help.
+- For issue-level SDD and architecture/design diagrams, follow the Mermaid guidance in [REFERENCE.md](REFERENCE.md).
 
 ## Advanced features
 
 See [REFERENCE.md](REFERENCE.md) for:
 
-- default phases
+- default layout and phases
 - companion skill mapping
+- SDD and Mermaid guidance
 - completion criteria
 - reconciliation rules
 - post-phase behavior

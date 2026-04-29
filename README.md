@@ -20,6 +20,10 @@ Especially:
 - `triage`
 - `tdd`
 
+For diagramming, it is also intended to use the Mermaid skill by WH-2099:
+
+- https://github.com/WH-2099/mermaid-skill/blob/main/.claude/skills/mermaid/SKILL.md
+
 ## Repository layout
 
 - `skills/ai-dev-process/SKILL.md` — skill definition
@@ -33,7 +37,7 @@ Especially:
 4. **Select Core Stories**: Choose the key stories for prototyping first.
 5. **Architecture Definition** *(use `grill-me`)*: Using prompts or interactive sessions, define the architecture and folder/package structure, and store the result in `design.md`.
 6. **Incremental Implementation & Workflow Management** *(use `triage`)*: Triage issues first and route them to `needs-info`, `ready-for-agent`, `ready-for-human`, or `wontfix`. Once an issue is `ready-for-agent`, move it through the implementation flow such as `todo -> in-progress -> review -> done`.
-   - **Use SDD (Specification-Driven Development)**: First define the functionality specification, ideally including a Mermaid diagram showing how the solution integrates into the existing architecture, and attach that to the in-progress issue.
+   - **Use SDD (Specification-Driven Development)**: Before TDD, the agent should explicitly inspect `design.md`, cross-check the planned issue-level design against it, and decide whether issue-level specification and Mermaid diagrams would add value. If they do, the agent should recommend that step first, name the diagram types and why they help, and—if the user agrees—use the Mermaid skill to add them inline to the issue markdown file by default. These issue-level diagrams must be kept consistent with `design.md`, and they must not be created without this consistency check first. If that cross-check finds any inconsistency, omission, or architectural drift, the issue must be raised explicitly; `design.md` must then be updated now or a follow-up architecture/design issue must be created automatically if the inconsistency is deferred.
    - **Use TDD (Test-Driven Development)** *(use `tdd`)*: Implement the stories using TDD.
    - **Maintain Design**: If difficulties arise or refactoring leads to design changes, update `design.md` accordingly.
 
@@ -62,6 +66,10 @@ joel.greenyer@uni-kassel.de
 This project honors Matt Pocock, author of the `skills` repository, whose work inspired this skill and whose companion skills are intended to be used with it:
 
 - Matt Pocock's `skills` repository: https://github.com/mattpocock/skills/tree/main/skills
+
+It also honors WH-2099, author of the Mermaid skill repository, whose Mermaid skill is intended to be used when issue-level or architectural diagrams are warranted:
+
+- WH-2099's Mermaid skill: https://github.com/WH-2099/mermaid-skill/blob/main/.claude/skills/mermaid/SKILL.md
 
 ## License
 

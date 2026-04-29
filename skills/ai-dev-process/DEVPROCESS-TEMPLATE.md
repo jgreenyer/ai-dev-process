@@ -13,7 +13,7 @@ Use this as the default project tracker for the AI-assisted development process.
 4. Select Core Stories: Choose key stories for prototyping.
 5. Architecture Definition (use `grill-me`): Define the architecture and folder/package structure (store in `design.md`).
 6. Incremental Implementation & Workflow Management (use `triage`): Triage issues first and route them to `needs-info`, `ready-for-agent`, `ready-for-human`, or `wontfix`. Once an issue is ready-for-agent, move it into the implementation flow, e.g. `todo -> in-progress -> review -> done`.
-   - Use SDD (Specification-Driven Development): First define the functionality specification, ideally including a Mermaid diagram showing how the solution integrates into the existing architecture (attach to the issue while it is in-progress).
+   - Use SDD (Specification-Driven Development): Before TDD, explicitly inspect `design.md`, cross-check the planned issue-level design against it, and decide whether issue-level specification and Mermaid diagrams would add value. If they do, recommend that step first, name the diagram types and why they help, and—if the user agrees—use the Mermaid skill to add them inline to the issue markdown file by default. Do not create those diagrams without this consistency check first. Keep them consistent with `design.md`, and if the cross-check finds any inconsistency, omission, or architectural drift, raise the inconsistency explicitly and either update `design.md` now or create follow-up design work if the inconsistency is deferred.
    - Use TDD (Test-Driven Development) (use `tdd`): Implement the stories using TDD.
    - Maintain Design: If difficulties arise or refactoring leads to design changes, update `design.md` accordingly.
 
